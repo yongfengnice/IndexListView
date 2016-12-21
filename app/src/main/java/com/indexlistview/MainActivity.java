@@ -85,15 +85,13 @@ public class MainActivity extends AppCompatActivity {
 
                 if (IndexListView.sFirstChar.equals(letter)) {
                     mListView.setSelection(0);
-                } else if (IndexListView.sLastChar.equals(letter)) {
-                    mListView.setSelection(mPersonList.size() - 1);
-                } else {
-                    for (int i = 0; i < mPersonList.size(); i++) {
-                        String index = String.valueOf(mPersonList.get(i).getPinyin().charAt(0));
-                        if (TextUtils.equals(letter, index)) {
-                            mListView.setSelection(i + mListView.getHeaderViewsCount());
-                            break;
-                        }
+                    return;
+                }
+                for (int i = 0; i < mPersonList.size(); i++) {
+                    String index = String.valueOf(mPersonList.get(i).getPinyin().charAt(0));
+                    if (IndexListView.sLastChar.equals(letter) && TextUtils.equals(IndexListView.sChar_z, index) || TextUtils.equals(letter, index)) {
+                        mListView.setSelection(i + mListView.getHeaderViewsCount());
+                        break;
                     }
                 }
             }
